@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import dlib
 # 读取图像
-path = r".\Pic\2src.jpg"
+path = r"./Pic/5src.jpg"
 image = cv2.imread(path)
 # 人脸分类器
 detector = dlib.get_frontal_face_detector()
@@ -36,7 +36,6 @@ kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (15, 15))
 masked_draw = cv2.morphologyEx(im_4, cv2.MORPH_CLOSE, kernel)
 # dlib排除五官
 cv2.fillPoly(masked_draw, [landmarks[7:11], landmarks[36:42], landmarks[42:48], landmarks[48:60]], 255)
-cv2.fillPoly(mask, [landmarks[7:11], landmarks[36:42], landmarks[42:48], landmarks[48:60]], 0)
 mask = cv2.bitwise_not(mask)
 masked_draw = cv2.bitwise_or(masked_draw, mask)
 # 绘制色斑轮廓
